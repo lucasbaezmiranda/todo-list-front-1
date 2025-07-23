@@ -1,4 +1,4 @@
-const BASE_URL = 'https://lukebm.com';
+const BASE_URL = 'https://api.lukebm.com';
 
 export async function fetchTodos() {
   const res = await fetch(`${BASE_URL}/todos/`);
