@@ -12,7 +12,8 @@ import { Line } from 'react-chartjs-2';
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Tooltip, Legend);
 
 export default function MathGraph() {
-  const xValues = Array.from({ length: 100 }, (_, i) => i / 10);
+  const steps = 37;
+  const xValues = Array.from({ length: steps + 1 }, (_, i) => i * (4 * Math.PI / steps));
   const yValues = xValues.map(x => Math.sin(x));
 
   const data = {
@@ -31,7 +32,6 @@ export default function MathGraph() {
 
   return (
     <div style={{ width: '100%', maxWidth: '600px', margin: '2rem auto' }}>
-      <h2>Gráfico de función matemática</h2>
       <Line data={data} />
     </div>
   );
