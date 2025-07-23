@@ -9,7 +9,7 @@ function App() {
     <div>
       <h1>Todo List</h1>
       <TodoForm onNewTodo={todo => setTodos(prev => [...prev, todo])} />
-      <TodoList key={todos.length} />
+      <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
 }
