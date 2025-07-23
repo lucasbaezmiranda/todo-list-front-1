@@ -66,3 +66,15 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+input {
+  padding: 4px;
+  font-size: 1rem;
+  margin-top: 2px;
+}
