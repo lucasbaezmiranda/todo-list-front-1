@@ -27,40 +27,37 @@ export default function PlotGenerator() {
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '2rem auto', padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
-      <h2>Generador de Gráficos Senoidales</h2>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', gap: '2rem', padding: '2rem' }}>
+      {/* Formulario */}
+      <div style={{ width: '300px', border: '1px solid #ccc', borderRadius: '8px', padding: '1rem' }}>
+        <h2>Parámetros de la función</h2>
         <div style={{ display: 'grid', gap: '0.5rem', marginBottom: '1rem' }}>
-        <label>
-            Amplitud 1:
+          <label>Amplitud 1:
             <input type="number" step="0.1" value={A1} onChange={e => setA1(Number(e.target.value))} />
-        </label>
-        <label>
-            Frecuencia 1:
+          </label>
+          <label>Frecuencia 1:
             <input type="number" step="0.1" value={f1} onChange={e => setF1(Number(e.target.value))} />
-        </label>
-        <label>
-            Amplitud 2:
+          </label>
+          <label>Amplitud 2:
             <input type="number" step="0.1" value={A2} onChange={e => setA2(Number(e.target.value))} />
-        </label>
-        <label>
-            Frecuencia 2:
+          </label>
+          <label>Frecuencia 2:
             <input type="number" step="0.1" value={f2} onChange={e => setF2(Number(e.target.value))} />
-        </label>
+          </label>
         </div>
+        <button onClick={handlePlot} disabled={loading}>
+          {loading ? 'Generando...' : 'Graficar'}
+        </button>
+      </div>
 
-      <button onClick={handlePlot} disabled={loading}>
-        {loading ? 'Generando...' : 'Graficar'}
-      </button>
-
+      {/* Imagen del gráfico */}
       {plotUrl && (
-        <div style={{ marginTop: '2rem' }}>
+        <div style={{ flexGrow: 1 }}>
           <h3>Resultado</h3>
-          <iframe
+          <img
             src={plotUrl}
-            title="Gráfico Plotly"
-            width="100%"
-            height="500px"
-            style={{ border: '1px solid #888', borderRadius: '4px' }}
+            alt="Gráfico generado"
+            style={{ width: '100%', maxWidth: '800px', border: '1px solid #888', borderRadius: '4px' }}
           />
         </div>
       )}
