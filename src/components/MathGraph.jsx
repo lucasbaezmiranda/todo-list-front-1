@@ -30,9 +30,50 @@ export default function MathGraph() {
     ]
   };
 
+  const options = {
+    scales: {
+      x: {
+        ticks: {
+          callback: function (value, index, values) {
+            const tickVal = this.getLabelForValue(value);
+            const frac = tickVal / Math.PI;
+            if (Number.isInteger(frac * 4) || Math.abs(frac * 4 - Math.round(frac * 4)) < 0.01) {
+              const n = Math.round(frac * 4) / 4;
+              if (n === 0) return '0';
+              if (n === 1) return 'π';
+              return `${n}\u03C0`; // π unicode
+            }
+            return '';
+          }
+        },
+        title: {
+          display: true,
+          text: 'x'
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'y = sin(x)'
+        }
+      }
+    },
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function (context) {
+            const x = context.label;
+            const y = context.parsed.y;
+            return `(${x.toFixed(2)}, ${y.toFixed(1)})`;
+          }
+        }
+      }
+    }
+  };
+
   return (
     <div style={{ width: '100%', maxWidth: '600px', margin: '2rem auto' }}>
-      <Line data={data} />
+      <Line data={data} options={options} />
     </div>
   );
 }
